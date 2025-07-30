@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodService - Премиальный Дистрибьютор Продуктов в Азербайджане</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/SD4prVZZ/48-F05-FA0-5-B6-F-4-CF5-9-DD5-B61905-B25-F20.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-float-delay {
+            animation: float 3s ease-in-out 0.5s infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .stats-item:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <img class="h-12 w-auto animate-float" src="https://i.ibb.co/tTz4H0M6/48-F05-FA0-5-B6-F-4-CF5-9-DD5-B61905-B25-F20-removebg-preview.png" alt="Логотип FoodService">
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-green-600 px-3 py-2 rounded-md text-sm font-medium hover:bg-green-50 transition">Главная</a>
+                        <a href="#about" class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium hover:bg-green-50 hover:text-green-600 transition">О Нас</a>
+                        <a href="#products" class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium hover:bg-green-50 hover:text-green-600 transition">Продукты</a>
+                        <a href="#services" class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium hover:bg-green-50 hover:text-green-600 transition">Услуги</a>
+                        <a href="#contact" class="text-gray-700 px-3 py-2 rounded-md text-sm font-medium hover:bg-green-50 hover:text-green-600 transition">Контакты</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="bg-green-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-green-700 transition flex items-center">
+                            <i class="fas fa-phone-alt mr-2"></i> +994 50 706 9438
+                        </button>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-green-600 hover:bg-gray-100 focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-green-600 block px-3 py-2 rounded-md text-base font-medium hover:bg-green-50">Главная</a>
+                <a href="#about" class="text-gray-700 block px-3 py-2 rounded-md text-base font-medium hover:bg-green-50 hover:text-green-600">О Нас</a>
+                <a href="#products" class="text-gray-700 block px-3 py-2 rounded-md text-base font-medium hover:bg-green-50 hover:text-green-600">Продукты</a>
+                <a href="#services" class="text-gray-700 block px-3 py-2 rounded-md text-base font-medium hover:bg-green-50 hover:text-green-600">Услуги</a>
+                <a href="#contact" class="text-gray-700 block px-3 py-2 rounded-md text-base font-medium hover:bg-green-50 hover:text-green-600">Контакты</a>
+                <button class="w-full bg-green-600 text-white px-6 py-2 rounded-full text-base font-medium hover:bg-green-700 transition flex items-center justify-center mt-2">
+                    <i class="fas fa-phone-alt mr-2"></i> +994 50 706 9438
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero flex items-center justify-center text-center text-white fade-in">
+        <div class="max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 slide-in-left">Премиальный Дистрибьютор Продуктов в Азербайджане</h1>
+            <p class="text-xl md:text-2xl mb-8 slide-in-right">Мы доставляем качественные продукты по всей стране с заботой и вниманием</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+          
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">О FoodService</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://pentagonfoodgroup.co.uk/blog/wp-content/uploads/2022/08/food-distribution-2.jpg" alt="О FoodService" class="rounded-lg shadow-xl w-full h-auto">
+                    <div class="absolute -bottom-6 -right-6 bg-green-600 text-white p-6 rounded-lg shadow-lg w-40 h-40 flex flex-col items-center justify-center animate-float">
+                        <span class="text-4xl font-bold">15+</span>
+                        <span class="text-sm">Лет Опыта</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Дистрибьютор продуктов в Азербайджане</h3>
+                    <p class="text-gray-600 mb-6">FoodService с 2008 года поставляет высококачественные продукты питания ресторанам, отелям, супермаркетам и предприятиям общественного питания в Азербайджане.</p>
+                    <p class="text-gray-600 mb-8">Наша приверженность качеству, надежности и удовлетворенности клиентов сделала нас предпочтительным партнером для предприятий пищевой индустрии по всей стране. Мы закупаем продукты у надежных местных и международных поставщиков, обеспечивая наших клиентов самыми свежими и качественными товарами.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Гарантия Качества</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-truck text-green-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Быстрая Доставка</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-star text-green-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Премиум Продукты</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-headset text-green-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Поддержка 24/7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-green-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stats-item p-6 rounded-lg bg-white bg-opacity-10 transition duration-300">
+                    <div class="text-4xl font-bold mb-2">500+</div>
+                    <div class="text-sm uppercase tracking-wider">Клиентов</div>
+                </div>
+                <div class="stats-item p-6 rounded-lg bg-white bg-opacity-10 transition duration-300">
+                    <div class="text-4xl font-bold mb-2">1000+</div>
+                    <div class="text-sm uppercase tracking-wider">Продуктов</div>
+                </div>
+                <div class="stats-item p-6 rounded-lg bg-white bg-opacity-10 transition duration-300">
+                    <div class="text-4xl font-bold mb-2">24/7</div>
+                    <div class="text-sm uppercase tracking-wider">Поддержка</div>
+                </div>
+                <div class="stats-item p-6 rounded-lg bg-white bg-opacity-10 transition duration-300">
+                    <div class="text-4xl font-bold mb-2">10+</div>
+                    <div class="text-sm uppercase tracking-wider">Городов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Наши Продукты</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+                <p class="max-w-2xl mx-auto text-gray-600 mt-6">Мы предлагаем широкий ассортимент высококачественных продуктов питания от местных и международных поставщиков.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://cdn.mos.cms.futurecdn.net/CNQfbvuvct2WmaAij7YnJJ.jpg" alt="Свежие Овощи" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Новинка</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Свежие Овощи</h3>
+                        <p class="text-gray-600 mb-4">Органические овощи от местных производителей, доставленные свежими к вашей двери.</p>
+                        <div class="flex justify-between items-center">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://d1n5l80rwxz6pi.cloudfront.net/general/blog/importance-of-dairy-products.jpg" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Молочные Продукты</h3>
+                        <p class="text-gray-600 mb-4">Премиальные молочные продукты от местных ферм: молоко, сыр, йогурт и другие.</p>
+                        <div class="flex justify-between items-center">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://lh3.googleusercontent.com/BBC8Wmo8xq5O6D7Q1pC9Du_R23w9LxUK3NsG8D9jiOrsMFx0hlktIhXbkWr2f0UF4w3vXhpFJFzprYq6Kqhj_HK9rpBj5M0SoINifiSxnMF4ak0CHZCWsDKgGS3HBpY9I6yNLqcgcrZ1_NE6ahFHR05W2Ua4cB-8sP7znYMSujvLac4lCWJhj378kfs_xg" alt="Мясо и Птица" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Популярное</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Мясо</h3>
+                        <p class="text-gray-600 mb-4">Высококачественные мясные продукты с халяль сертификатом для вашего бизнеса.</p>
+                        <div class="flex justify-between items-center">
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Наши Услуги</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+                <p class="max-w-2xl mx-auto text-gray-600 mt-6">Мы предлагаем широкий спектр решений для распределения продуктов питания, адаптированных к вашим бизнес-потребностям.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-50 rounded-lg p-8 transition duration-300 hover:shadow-lg">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-truck text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4">Надежная Доставка</h3>
+                    <p class="text-gray-600 text-center">Наша эффективная логистическая сеть обеспечивает своевременную доставку ваших заказов по всему Азербайджану.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-gray-50 rounded-lg p-8 transition duration-300 hover:shadow-lg">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-boxes text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4">Оптовые Закупки</h3>
+                    <p class="text-gray-600 text-center">Специальные оптовые цены для крупных заказов, чтобы максимизировать вашу прибыль.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-gray-50 rounded-lg p-8 transition duration-300 hover:shadow-lg">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-calendar-alt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4">Плановые Поставки</h3>
+                    <p class="text-gray-600 text-center">Установите регулярный график поставок в соответствии с вашими бизнес-потребностями и циклами инвентаризации.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Что Говорят Наши Клиенты</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md relative">
+                    <div class="absolute -top-6 -left-6 bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"FoodService - наш надежный партнер уже более 5 лет. Их качественные продукты и надежная доставка помогли поддерживать последовательность и удовлетворенность клиентов нашего ресторана."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Клиент" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Рашад Алиев</h4>
+                            <p class="text-gray-500 text-sm">Владелец, Ресторан в Баку</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md relative">
+                    <div class="absolute -top-6 -left-6 bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Ассортимент продукции и отличное обслуживание делают FoodService нашим первым выбором. Их команда всегда готова сделать больше, чтобы удовлетворить наши потребности."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Клиент" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Айсель Мамедова</h4>
+                            <p class="text-gray-500 text-sm">Менеджер по закупкам, Гранд Отель</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md relative">
+                    <div class="absolute -top-6 -left-6 bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Как сеть супермаркетов, мы доверяем FoodService за стабильное качество и конкурентоспособные цены. Их распределительная сеть по всей стране впечатляет."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Клиент" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Эльвин Исмаилов</h4>
+                            <p class="text-gray-500 text-sm">CEO, Сеть Супермаркетов MarketPlus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section class="py-32 text-white parallax" style="background-image: url('https://howdyhealth.tamu.edu/wp-content/uploads/2023/11/3-easy-ways-to-eat-more-vegetables.jpg');">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Готовы Сотрудничать с Нами?</h2>
+            <p class="text-xl mb-8">Присоединяйтесь к сотням довольных предприятий по всему Азербайджану, которые доверяют FoodService свои потребности в распределении продуктов питания.</p>
+          </div>
+    </section>
+
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <button style="background-color: #4CAF50; color: white; padding: 20px 60px; font-size: 24px; border: none; border-radius: 10px; cursor: pointer;" onclick="window.location.href='https://info.foodserv.az'">
+    Связаться с Нами
+  </button>
+    </div>
+    
+        </div>
+    </section>
+
+ <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="https://i.ibb.co/tTz4H0M6/48-F05-FA0-5-B6-F-4-CF5-9-DD5-B61905-B25-F20-removebg-preview.png" alt="Логотип FoodService" class="h-10 mb-4">
+                    <p class="text-gray-400">Премиальные услуги по распределению продуктов питания в Азербайджане с 2008 года.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Быстрые Ссылки</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Главная</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">О Нас</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white transition">Продукты</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Услуги</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Новостная Рассылка</h4>
+                    <p class="text-gray-400 mb-4">Подпишитесь на нашу рассылку, чтобы получать последние новости и предложения.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Ваш Email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-r-lg transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2025 FoodService. Все права защищены.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.product-card, .stats-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate-float');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    
+    </script>
+</body>
+</html>
